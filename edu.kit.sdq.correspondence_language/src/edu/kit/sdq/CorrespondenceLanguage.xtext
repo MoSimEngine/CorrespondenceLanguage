@@ -1,0 +1,55 @@
+grammar edu.kit.sdq.CorrespondenceLanguage with org.eclipse.xtext.common.Terminals
+
+generate correspondenceLanguage "http://www.kit.edu/sdq/CorrespondenceLanguage"
+
+CorrespondenceModel:
+	(modelElements+=ModelElement)+	
+;
+
+ModelElement:
+	abstractentity+=AbstractEntity | entity+=Entity | exchangeType+=ExchangeType | correspondence+=Correspondence | rules+=Rule	
+;
+
+AbstractEntity:
+	'abstract_entity' name=ID':'
+	'id:' identifier1=STRING
+;
+
+Entity:
+	'entity' name=ID ('extends' superElement=[AbstractEntity])?':'
+	'id' identifier=STRING
+	('provides' provides=[ExchangeType])?
+	('requires' requires=[ExchangeType])?
+;
+
+ExchangeType:
+	'exchange' name=ID ':' type=Type
+;
+
+Correspondence:
+	'correspondence:' input1=[Entity] 'and' input2=[Entity]':' 
+	'use' rule1=[Rule] 'and' rule2=[Rule]
+;
+
+Rule:
+	'rule' name=ID START_FUNCTION entity=[Entity] ',' entity2=[Entity] END_FUNCTION ':'
+		'return' one=[Entity]'.'ReqOrProv Operator two=[Entity]'.'ReqOrProv 
+;
+
+ReqOrProv:
+	('requires'|'provides')
+;
+
+NeueRegel:
+	ID('.'ID)*
+;
+
+Operator:
+	('*'|'+'|'-'|'/')
+;
+
+terminal START_FUNCTION: '(';
+terminal END_FUNCTION: ')';
+
+enum Type: int | float | double ;
+
