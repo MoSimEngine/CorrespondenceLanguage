@@ -1,0 +1,12 @@
+entity Airplane extends SimEntity:
+	id "airplane"
+	provides Speed
+
+entity Jet extends SimEntity:
+	id "jet"
+	requires Velocity
+	
+entity Helicopter extends SimEntity:
+	id 'heli'
+	provides Speed
+	requires Velocity	

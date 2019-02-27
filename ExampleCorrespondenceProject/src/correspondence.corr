@@ -1,0 +1,3 @@
+correspondence: Airplane and Jet:
+	use velocity_to_speed and speed_to_velocity	
+	

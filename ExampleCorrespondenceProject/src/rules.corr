@@ -1,0 +1,6 @@
+rule velocity_to_speed(Airplane, Jet):
+	return Airplane.requires * Jet.provides
+
+rule speed_to_velocity(Jet, Airplane):
+	return Jet.provides * Airplane.requires
+	

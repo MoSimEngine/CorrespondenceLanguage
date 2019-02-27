@@ -1,0 +1,7 @@
+abstract_entity SimEntity:
+	id: "simulation_entity"
+	
+abstract_entity SecEntity:
+	id: "security_entity"	
+	
+	
